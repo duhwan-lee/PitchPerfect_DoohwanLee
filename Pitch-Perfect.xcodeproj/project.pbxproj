@@ -16,7 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		871ACB861E1A6D5C00391602 /* Pitch_Perfect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pitch_Perfect.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		871ACB861E1A6D5C00391602 /* Pitch-Perfect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pitch-Perfect.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		871ACB891E1A6D5C00391602 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		871ACB8B1E1A6D5C00391602 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		871ACB8E1E1A6D5C00391602 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -49,7 +49,7 @@
 		871ACB871E1A6D5C00391602 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				871ACB861E1A6D5C00391602 /* Pitch_Perfect.app */,
+				871ACB861E1A6D5C00391602 /* Pitch-Perfect.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -64,15 +64,16 @@
 				871ACB921E1A6D5C00391602 /* LaunchScreen.storyboard */,
 				871ACB951E1A6D5C00391602 /* Info.plist */,
 			);
-			path = Pitch_Perfect;
+			name = Pitch_Perfect;
+			path = "Pitch-Perfect";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		871ACB851E1A6D5C00391602 /* Pitch_Perfect */ = {
+		871ACB851E1A6D5C00391602 /* Pitch-Perfect */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 871ACB981E1A6D5C00391602 /* Build configuration list for PBXNativeTarget "Pitch_Perfect" */;
+			buildConfigurationList = 871ACB981E1A6D5C00391602 /* Build configuration list for PBXNativeTarget "Pitch-Perfect" */;
 			buildPhases = (
 				871ACB821E1A6D5C00391602 /* Sources */,
 				871ACB831E1A6D5C00391602 /* Frameworks */,
@@ -82,9 +83,9 @@
 			);
 			dependencies = (
 			);
-			name = Pitch_Perfect;
+			name = "Pitch-Perfect";
 			productName = Test02;
-			productReference = 871ACB861E1A6D5C00391602 /* Pitch_Perfect.app */;
+			productReference = 871ACB861E1A6D5C00391602 /* Pitch-Perfect.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -103,7 +104,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 871ACB811E1A6D5C00391602 /* Build configuration list for PBXProject "Pitch_Perfect" */;
+			buildConfigurationList = 871ACB811E1A6D5C00391602 /* Build configuration list for PBXProject "Pitch-Perfect" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -116,7 +117,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				871ACB851E1A6D5C00391602 /* Pitch_Perfect */,
+				871ACB851E1A6D5C00391602 /* Pitch-Perfect */,
 			);
 		};
 /* End PBXProject section */
@@ -265,7 +266,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = Pitch_Perfect/Info.plist;
+				INFOPLIST_FILE = "Pitch-Perfect/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "doo.hwan.Pitch-Perfect";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -278,7 +279,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = Pitch_Perfect/Info.plist;
+				INFOPLIST_FILE = "Pitch-Perfect/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "doo.hwan.Pitch-Perfect";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -289,7 +290,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		871ACB811E1A6D5C00391602 /* Build configuration list for PBXProject "Pitch_Perfect" */ = {
+		871ACB811E1A6D5C00391602 /* Build configuration list for PBXProject "Pitch-Perfect" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				871ACB961E1A6D5C00391602 /* Debug */,
@@ -298,7 +299,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		871ACB981E1A6D5C00391602 /* Build configuration list for PBXNativeTarget "Pitch_Perfect" */ = {
+		871ACB981E1A6D5C00391602 /* Build configuration list for PBXNativeTarget "Pitch-Perfect" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				871ACB991E1A6D5C00391602 /* Debug */,
