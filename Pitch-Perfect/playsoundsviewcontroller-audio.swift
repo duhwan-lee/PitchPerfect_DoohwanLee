@@ -10,7 +10,7 @@ import AVFoundation
 
 // MARK: - PlaySoundsViewController: AVAudioPlayerDelegate
 
-extension PlaySoundsViewController: AVAudioPlayerDelegate {
+extension PlaySoundsViewController: AVAudioRecorderDelegate {
     
     // MARK: Alerts
     
@@ -36,6 +36,7 @@ extension PlaySoundsViewController: AVAudioPlayerDelegate {
     func setupAudio() {
         // initialize (recording) audio file
         do {
+            print("recordedAudioURL",recordedAudioURL)
             audioFile = try AVAudioFile(forReading: recordedAudioURL as URL)
         } catch {
             showAlert(Alerts.AudioFileError, message: String(describing: error))
@@ -50,7 +51,7 @@ extension PlaySoundsViewController: AVAudioPlayerDelegate {
         // node for playing audio
         audioPlayerNode = AVAudioPlayerNode()
         audioEngine.attach(audioPlayerNode)
-        
+    
         // node for adjusting rate/pitch
         let changeRatePitchNode = AVAudioUnitTimePitch()
         if let pitch = pitch {
@@ -115,7 +116,6 @@ extension PlaySoundsViewController: AVAudioPlayerDelegate {
     }
     
     func stopAudio() {
-        
         if let audioPlayerNode = audioPlayerNode {
             audioPlayerNode.stop()
         }
@@ -147,6 +147,7 @@ extension PlaySoundsViewController: AVAudioPlayerDelegate {
         case .playing:
             setPlayButtonsEnabled(false)
             stopButton.isEnabled = true
+            
         case .notPlaying:
             setPlayButtonsEnabled(true)
             stopButton.isEnabled = false

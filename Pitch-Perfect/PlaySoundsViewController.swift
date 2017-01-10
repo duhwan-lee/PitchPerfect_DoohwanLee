@@ -11,7 +11,8 @@ import AVFoundation
 
 class PlaySoundsViewController: UIViewController {
     var recordedAudioURL: URL!
-    
+    var timer : Timer?
+    @IBOutlet weak var slider: UISlider!
     @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var reverbButton: UIButton!
     @IBOutlet weak var echoButton: UIButton!
@@ -20,6 +21,8 @@ class PlaySoundsViewController: UIViewController {
     @IBOutlet weak var rabbitButton: UIButton!
     @IBOutlet weak var snailButton: UIButton!
 
+    @IBOutlet weak var currentTimeLabel: UILabel!
+    @IBOutlet weak var totalTime: UILabel!
     var audioFile:AVAudioFile!
     var audioEngine:AVAudioEngine!
     var audioPlayerNode: AVAudioPlayerNode!
@@ -27,6 +30,39 @@ class PlaySoundsViewController: UIViewController {
     
     enum ButtonType: Int {
         case slow = 0, fast, chipmunk, vader, echo, reverb
+    }
+    @IBAction func normalPlay(_ sender: Any) {
+    playSound()
+        configureUI(.playing)
+    }
+    @IBAction func ChageSlider(_ sender: Any) {
+        //audioFile.time
+        //audioPlayerNode.self.time
+        //audioPlayerNode.t
+    }
+    
+    
+    private func TotalTime() -> TimeInterval {
+        if let nodeTime: AVAudioTime = audioPlayerNode.lastRenderTime, let playerTime: AVAudioTime = audioPlayerNode.playerTime(forNodeTime: nodeTime) {
+            return Double(audioFile.length)/playerTime.sampleRate
+        }
+        return 0
+    }
+    private func currentTime() -> TimeInterval {
+        if let nodeTime: AVAudioTime = audioPlayerNode.lastRenderTime, let playerTime: AVAudioTime = audioPlayerNode.playerTime(forNodeTime: nodeTime) {
+            return Double(Double(playerTime.sampleTime) / playerTime.sampleRate)
+        }
+        return 0
+    }
+    func stringFromTimeInterval(_ interval: TimeInterval) -> String {
+        let interval = Int(interval)
+        let seconds = interval % 60
+        let minutes = (interval / 60) % 60
+        //let hours = (interval / 3600)
+        return String(format: "%02d:%02d", minutes, seconds)
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        stopAudio()
     }
     @IBAction func playSoundForButton(_ sender: UIButton) {
     print("play sound button pressed")
@@ -46,15 +82,28 @@ class PlaySoundsViewController: UIViewController {
         }
         
         configureUI(.playing)
+        totalTime.text = stringFromTimeInterval(TotalTime())
+        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(update), userInfo: nil, repeats: true);
+       
+        
+    }
+    
+    func update(){
+        currentTimeLabel.text = stringFromTimeInterval(currentTime())
+        slider.value = Float(currentTime()/TotalTime())
     }
     @IBAction func stopButtonPressed(_ sender: Any) {
     print("stop audio button pressed")
     stopAudio()
+    timer = nil
     }
     
     override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
         configureUI(.notPlaying)
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        self.title = appDelegate.filename
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
