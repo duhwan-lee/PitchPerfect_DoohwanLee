@@ -36,8 +36,9 @@ extension PlaySoundsViewController: AVAudioRecorderDelegate {
     func setupAudio() {
         // initialize (recording) audio file
         do {
-            print("recordedAudioURL",recordedAudioURL)
-            audioFile = try AVAudioFile(forReading: recordedAudioURL as URL)
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            //print("recordedAudioURL",appDelegate.recordAudioURL!)
+            audioFile = try AVAudioFile(forReading: appDelegate.recordAudioURL! as URL)
         } catch {
             showAlert(Alerts.AudioFileError, message: String(describing: error))
         }        
@@ -130,6 +131,7 @@ extension PlaySoundsViewController: AVAudioRecorderDelegate {
             audioEngine.stop()
             audioEngine.reset()
         }
+        timer?.invalidate()
     }
     
     // MARK: Connect List of Audio Nodes

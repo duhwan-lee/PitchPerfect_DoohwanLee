@@ -1,4 +1,4 @@
-//
+	//
 //  AppDelegate.swift
 //  Test02
 //
@@ -12,7 +12,8 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var filename = "recordedVoice.wav"
+    var filename = "recordedVoice"
+    var recordAudioURL : URL?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.

@@ -65,7 +65,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate{
         let dirPath = NSSearchPathForDirectoriesInDomains(.documentDirectory,.userDomainMask, true)[0] as String
         //let recordingName = "recordedVoice.wav"
         
-        let pathArray = [dirPath, appDelegate.filename]
+        let pathArray = [dirPath, appDelegate.filename+".wav"]
         let filePath = URL(string: pathArray.joined(separator: "/"))
         //print(filePath!)
         let session = AVAudioSession.sharedInstance()
@@ -79,10 +79,8 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate{
         
     }
     func stringFromTimeInterval(_ interval: Int) -> String {
-        //let interval = Int(interval)
         let seconds = interval % 60
         let minutes = (interval / 60) % 60
-        //let hours = (interval / 3600)
         return String(format: "%02d:%02d", minutes, seconds)
     }
     
@@ -113,6 +111,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate{
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         print("finished recording")
         if flag {
+            appDelegate.recordAudioURL = audioRecorder.url
             performSegue(withIdentifier: "stopRecording", sender: audioRecorder.url)
 
         }else{
@@ -120,11 +119,11 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate{
         }
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "stopRecording"{
-            let playSoundVC = segue.destination as! PlaySoundsViewController
-            let recordedAudioURL = sender as! URL
-            playSoundVC.recordedAudioURL = recordedAudioURL
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "stopRecording"{
+//            let playSoundVC = segue.destination as! PlaySoundsViewController
+//            let recordedAudioURL = sender as! URL
+//            playSoundVC.recordedAudioURL = recordedAudioURL
+//        }
+//    }
 }

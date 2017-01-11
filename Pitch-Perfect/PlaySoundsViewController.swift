@@ -12,6 +12,7 @@ import AVFoundation
 class PlaySoundsViewController: UIViewController {
     var recordedAudioURL: URL!
     var timer : Timer?
+    
     @IBOutlet weak var slider: UISlider!
     @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var reverbButton: UIButton!
@@ -20,9 +21,9 @@ class PlaySoundsViewController: UIViewController {
     @IBOutlet weak var chipmunkButton: UIButton!
     @IBOutlet weak var rabbitButton: UIButton!
     @IBOutlet weak var snailButton: UIButton!
-
     @IBOutlet weak var currentTimeLabel: UILabel!
     @IBOutlet weak var totalTime: UILabel!
+    
     var audioFile:AVAudioFile!
     var audioEngine:AVAudioEngine!
     var audioPlayerNode: AVAudioPlayerNode!
@@ -31,14 +32,14 @@ class PlaySoundsViewController: UIViewController {
     enum ButtonType: Int {
         case slow = 0, fast, chipmunk, vader, echo, reverb
     }
+    
     @IBAction func normalPlay(_ sender: Any) {
-    playSound()
+        playSound()
         configureUI(.playing)
     }
+    
     @IBAction func ChageSlider(_ sender: Any) {
-        //audioFile.time
-        //audioPlayerNode.self.time
-        //audioPlayerNode.t
+        
     }
     
     
@@ -58,7 +59,6 @@ class PlaySoundsViewController: UIViewController {
         let interval = Int(interval)
         let seconds = interval % 60
         let minutes = (interval / 60) % 60
-        //let hours = (interval / 3600)
         return String(format: "%02d:%02d", minutes, seconds)
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -83,7 +83,7 @@ class PlaySoundsViewController: UIViewController {
         
         configureUI(.playing)
         totalTime.text = stringFromTimeInterval(TotalTime())
-        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(update), userInfo: nil, repeats: true);
+        timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(update), userInfo: nil, repeats: true);
        
         
     }
@@ -99,23 +99,20 @@ class PlaySoundsViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
+        super.viewWillAppear(animated)
+        setupAudio()
         configureUI(.notPlaying)
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         self.title = appDelegate.filename
-        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "파일변경", style: .plain, target: self, action: #selector(rightButton))
+
+    }
+    func rightButton(){
+        performSegue(withIdentifier: "file_segue", sender: nil)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupAudio()
-        // Do any additional setup after loading the view.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 
     /*
     // MARK: - Navigation

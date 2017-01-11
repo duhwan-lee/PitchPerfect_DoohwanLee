@@ -90,7 +90,7 @@
         <!--Play Sounds View Controller-->
         <scene sceneID="IB6-9F-woU">
             <objects>
-                <viewController id="V2f-Zo-rCI" customClass="PlaySoundsViewController" customModule="Pitch_Perfect" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="psVC" id="V2f-Zo-rCI" customClass="PlaySoundsViewController" customModule="Pitch_Perfect" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2zk-YG-FMF"/>
                         <viewControllerLayoutGuide type="bottom" id="0Jl-Ym-8hH"/>
@@ -247,11 +247,59 @@
                         <outlet property="stopButton" destination="ugY-DH-ujQ" id="ExP-kZ-nz5"/>
                         <outlet property="totalTime" destination="HMf-Jh-dRq" id="vHV-Ro-OtU"/>
                         <outlet property="vaderButton" destination="Ce8-DU-PzQ" id="l5x-sQ-YIK"/>
+                        <segue destination="fch-IS-rN4" kind="show" identifier="file_segue" id="gNH-NY-WZc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zMa-LB-uye" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2210" y="-546"/>
+            <point key="canvasLocation" x="1953" y="-562"/>
+        </scene>
+        <!--File List View Controller-->
+        <scene sceneID="4V5-hn-nUo">
+            <objects>
+                <viewController storyboardIdentifier="FileVC" id="fch-IS-rN4" customClass="FileListViewController" customModule="Pitch_Perfect" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cmH-y1-6q2"/>
+                        <viewControllerLayoutGuide type="bottom" id="7gw-kI-rad"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jU0-s8-2dN" customClass="File">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="C8i-cN-Xtf">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell01" id="H3U-hh-Z5V">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="H3U-hh-Z5V" id="kKN-um-acc">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="fch-IS-rN4" id="hdJ-aQ-f8y"/>
+                                    <outlet property="delegate" destination="fch-IS-rN4" id="s5t-as-B5h"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="C8i-cN-Xtf" secondAttribute="trailing" id="4UC-mE-ccz"/>
+                            <constraint firstItem="C8i-cN-Xtf" firstAttribute="top" secondItem="jU0-s8-2dN" secondAttribute="top" id="6Gs-5E-Eph"/>
+                            <constraint firstItem="C8i-cN-Xtf" firstAttribute="leading" secondItem="jU0-s8-2dN" secondAttribute="leading" id="70n-Pf-Jri"/>
+                            <constraint firstItem="7gw-kI-rad" firstAttribute="top" secondItem="C8i-cN-Xtf" secondAttribute="bottom" id="rr4-CS-fC7"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableview" destination="C8i-cN-Xtf" id="mnr-uW-r4H"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cuh-yp-zwu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2951" y="-563"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ynh-Zw-b82">
