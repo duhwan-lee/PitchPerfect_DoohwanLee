@@ -1,12 +1,18 @@
 # Pitch-Perfect
 
+
+
+
+
 ## 목차
 * Application 설명 
 * Application 기능
 * Kick 추가 기능
 
 
-## Application 설명
+
+
+### Application 설명
 
  * 녹음 및 저장 (wav 파일)
  * 재생 (6가지 기능에 맞춰 재생가능)
@@ -15,12 +21,27 @@ iOS 어플리케이션으로 녹음을 한 후 6가지 기능에 맞춰 사운드파일을 재생하여 들어볼
 
 
 
+
+
 ## Application 기능
 
+* ViewController를 이용한 씬 전환
+* AVFoundation을 이용한 사운드 녹음, 재생
+* Constrict 화면 구성
+* UIButton 활성화/비활성화
+* rate, pitch, echo, reverb 를 이용한 사운드 변조
+* delegate를 이용한 이벤트 처리
 
 
 
 ## Kick 추가 기능
+
+
+
+
+
+
+
 
 ![스크린샷 1](https://github.com/enghks1414/PitchPerfect_DoohwanLee/blob/master/Scene_1.png)
 
