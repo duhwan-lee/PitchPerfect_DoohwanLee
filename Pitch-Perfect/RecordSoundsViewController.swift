@@ -11,6 +11,7 @@ import AVFoundation
 
 class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate{
 
+    @IBOutlet weak var segment: UISegmentedControl!
     @IBOutlet weak var recordingLabel: UILabel!
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var stopRecordingButton: UIButton!
@@ -30,6 +31,8 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate{
         print("viewWillAppear called")
         sec = 0
         recordingTime.text = "00:00"
+        self.navigationController?.isNavigationBarHidden = true
+
         
     }
 
@@ -70,7 +73,14 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate{
         //print(filePath!)
         let session = AVAudioSession.sharedInstance()
         try! session.setCategory(AVAudioSessionCategoryPlayAndRecord, with:AVAudioSessionCategoryOptions.defaultToSpeaker)
-        try! audioRecorder = AVAudioRecorder(url: filePath!, settings: [:])
+        var setting = [String : Any]()
+        if segment.selectedSegmentIndex == 0{
+            setting = [AVSampleRateKey : 44100, AVLinearPCMBitDepthKey : 16]
+        }else{
+           setting = [AVSampleRateKey : 48000, AVLinearPCMBitDepthKey : 24]
+        }
+        try! audioRecorder = AVAudioRecorder(url: filePath!, settings: setting)
+        
         audioRecorder.delegate = self
         audioRecorder.isMeteringEnabled = true
         audioRecorder.prepareToRecord()

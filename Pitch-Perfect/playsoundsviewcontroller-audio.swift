@@ -111,7 +111,8 @@ extension PlaySoundsViewController: AVAudioRecorderDelegate {
             showAlert(Alerts.AudioEngineError, message: String(describing: error))
             return
         }
-        
+        audioflag = true
+        timer = Timer.scheduledTimer(timeInterval: 0.001, target: self, selector: #selector(update), userInfo: nil, repeats: true);
         // play the recording!
         audioPlayerNode.play()
     }
@@ -132,6 +133,7 @@ extension PlaySoundsViewController: AVAudioRecorderDelegate {
             audioEngine.reset()
         }
         timer?.invalidate()
+        audioflag = false
     }
     
     // MARK: Connect List of Audio Nodes
@@ -149,10 +151,11 @@ extension PlaySoundsViewController: AVAudioRecorderDelegate {
         case .playing:
             setPlayButtonsEnabled(false)
             stopButton.isEnabled = true
-            
+            playButton.setImage(#imageLiteral(resourceName: "pause-2"), for: UIControlState.normal)
         case .notPlaying:
             setPlayButtonsEnabled(true)
             stopButton.isEnabled = false
+            playButton.setImage(#imageLiteral(resourceName: "play-button"), for: UIControlState.normal)
         }
     }
     

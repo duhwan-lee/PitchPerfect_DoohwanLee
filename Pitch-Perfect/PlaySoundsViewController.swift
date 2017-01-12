@@ -23,19 +23,35 @@ class PlaySoundsViewController: UIViewController {
     @IBOutlet weak var snailButton: UIButton!
     @IBOutlet weak var currentTimeLabel: UILabel!
     @IBOutlet weak var totalTime: UILabel!
+    @IBOutlet weak var playButton: UIButton!
     
     var audioFile:AVAudioFile!
     var audioEngine:AVAudioEngine!
     var audioPlayerNode: AVAudioPlayerNode!
     var stopTimer: Timer!
-    
+    var audioflag = false
     enum ButtonType: Int {
         case slow = 0, fast, chipmunk, vader, echo, reverb
     }
     
     @IBAction func normalPlay(_ sender: Any) {
-        playSound()
-        configureUI(.playing)
+       
+        if audioflag == false{
+            playSound()
+            configureUI(.playing)
+            
+        }else{
+            if audioPlayerNode.isPlaying == true {
+                audioPlayerNode.pause()
+                timer?.invalidate()
+                playButton.setImage(#imageLiteral(resourceName: "play-button"), for: UIControlState.normal)
+            }else{
+                audioPlayerNode.play()
+                playButton.setImage(#imageLiteral(resourceName: "pause-2"), for: UIControlState.normal)
+                timer = Timer.scheduledTimer(timeInterval: 0.001, target: self, selector: #selector(update), userInfo: nil, repeats: true);
+            }
+        }
+        
     }
     
     @IBAction func ChageSlider(_ sender: Any) {
@@ -82,13 +98,14 @@ class PlaySoundsViewController: UIViewController {
         }
         
         configureUI(.playing)
-        totalTime.text = stringFromTimeInterval(TotalTime())
-        timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(update), userInfo: nil, repeats: true);
+        
+        
        
         
     }
     
     func update(){
+        totalTime.text = stringFromTimeInterval(TotalTime())
         currentTimeLabel.text = stringFromTimeInterval(currentTime())
         slider.value = Float(currentTime()/TotalTime())
     }
@@ -105,6 +122,7 @@ class PlaySoundsViewController: UIViewController {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         self.title = appDelegate.filename
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "파일변경", style: .plain, target: self, action: #selector(rightButton))
+        self.navigationController?.isNavigationBarHidden = false
 
     }
     func rightButton(){
