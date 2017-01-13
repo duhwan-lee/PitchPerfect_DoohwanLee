@@ -39,7 +39,6 @@ class PlaySoundsViewController: UIViewController {
         if audioflag == false{
             playSound()
             configureUI(.playing)
-            
         }else{
             if audioPlayerNode.isPlaying == true {
                 audioPlayerNode.pause()
@@ -48,7 +47,7 @@ class PlaySoundsViewController: UIViewController {
             }else{
                 audioPlayerNode.play()
                 playButton.setImage(#imageLiteral(resourceName: "pause-2"), for: UIControlState.normal)
-                timer = Timer.scheduledTimer(timeInterval: 0.001, target: self, selector: #selector(update), userInfo: nil, repeats: true);
+                timer = Timer.scheduledTimer(timeInterval: 0.0001, target: self, selector: #selector(update), userInfo: nil, repeats: true);
             }
         }
         
@@ -108,6 +107,7 @@ class PlaySoundsViewController: UIViewController {
         totalTime.text = stringFromTimeInterval(TotalTime())
         currentTimeLabel.text = stringFromTimeInterval(currentTime())
         slider.value = Float(currentTime()/TotalTime())
+        //print("Totaltime : \(TotalTime()) //  CurrentTime : \(currentTime()) // slidervalue : \(slider.value)")
     }
     @IBAction func stopButtonPressed(_ sender: Any) {
     print("stop audio button pressed")
@@ -123,7 +123,7 @@ class PlaySoundsViewController: UIViewController {
         self.title = appDelegate.filename
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "파일변경", style: .plain, target: self, action: #selector(rightButton))
         self.navigationController?.isNavigationBarHidden = false
-
+        audioflag = false
     }
     func rightButton(){
         performSegue(withIdentifier: "file_segue", sender: nil)

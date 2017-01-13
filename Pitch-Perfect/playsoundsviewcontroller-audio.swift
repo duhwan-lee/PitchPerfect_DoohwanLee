@@ -102,6 +102,7 @@ extension PlaySoundsViewController: AVAudioRecorderDelegate {
             
             // schedule a stop timer for when audio finishes playing
             self.stopTimer = Timer(timeInterval: delayInSeconds, target: self, selector: #selector(PlaySoundsViewController.stopAudio), userInfo: nil, repeats: false)
+            //print("delayInSeconds : ",delayInSeconds)
             RunLoop.main.add(self.stopTimer!, forMode: RunLoopMode.defaultRunLoopMode)
         }
         

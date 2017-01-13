@@ -12,18 +12,18 @@ class FileListViewController: UIViewController, UITableViewDataSource, UITableVi
     var fileURL = [URL]()
     var fileName = [String]()
     
-    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+
     @IBOutlet weak var tableview: UITableView!
     
     override func viewWillDisappear(_ animated: Bool) {
         if let indexPathList = tableview.indexPathForSelectedRow {
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
             appDelegate.filename = fileName[indexPathList.row]
             appDelegate.recordAudioURL = fileURL[indexPathList.row]
         }
     }
     override func viewDidLoad() {
-        print("file viewdidload")
+        //print("file viewdidload")
         super.viewDidLoad()
         let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         
@@ -49,7 +49,7 @@ class FileListViewController: UIViewController, UITableViewDataSource, UITableVi
         return cell
     }
     override func viewDidLayoutSubviews() {
-        let indexPath = IndexPath(row: 0, section: 0)
+         let indexPath = IndexPath(row: fileName.index(of: appDelegate.filename)!, section: 0)
         tableview.selectRow(at: indexPath, animated: true, scrollPosition: .top)
     }
     
