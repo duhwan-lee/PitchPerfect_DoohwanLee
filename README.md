@@ -40,7 +40,8 @@ iOS 어플리케이션으로 녹음을 한 후 6가지 기능에 맞춰 사운드파일을 재생하여 들어볼
 ### Kick 추가 기능
  
  
- 
+
+#### Recoed View
 ![스크린샷 1](https://github.com/enghks1414/PitchPerfect_DoohwanLee/blob/master/Scene_1.png)
 * 상단 부분 StackView를 사용하여 3개자 View 추가.(Navigation Bar Hide)
 * 이름 변경 -  UIAlertController로 파일 이름을 다양하게 저장하여 여러개의 wav 녹음 파일을 생성
@@ -50,7 +51,7 @@ iOS 어플리케이션으로 녹음을 한 후 6가지 기능에 맞춰 사운드파일을 재생하여 들어볼
  
  
 
-
+#### Play View
 ![스크린샷 2](https://github.com/enghks1414/PitchPerfect_DoohwanLee/blob/master/Scene_2.png)
 * Slider를 이용한 녹음 파일의 진행 상태
 * 일반 재생 / 일시정지 - 재생 상태에 맞춰 UIButton 이미지 변경
@@ -58,6 +59,6 @@ iOS 어플리케이션으로 녹음을 한 후 6가지 기능에 맞춰 사운드파일을 재생하여 들어볼
 * 재생 파일 변경을 위한 Scene변경
  
  
- 
+ #### FileList View
 ![스크린샷 3](https://github.com/enghks1414/PitchPerfect_DoohwanLee/blob/master/Scene_3.png)
 * Documents 디렉토리에서 .wav파일 목록을 TableView에 표시
